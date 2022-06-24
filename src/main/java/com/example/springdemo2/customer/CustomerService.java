@@ -2,11 +2,19 @@ package com.example.springdemo2.customer;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
-    Customer getCusomer(){
-        return new Customer(1L, "James Bond");
+    private final CustomerRepo customerRepo;
+
+    public CustomerService(CustomerRepo customerRepo) {
+        this.customerRepo = customerRepo;
+    }
+
+    List<Customer> getCusomer(){
+        return customerRepo.getcustomers();
     }
 
 }
