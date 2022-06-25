@@ -22,7 +22,7 @@ public class CustomerService {
                 .stream()
                 .filter(customer -> customer.getId().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new IllegalStateException("customer not found "));
+                .orElseThrow(()-> new IllegalStateException("customer with id  " + id + "  not found "));
 
     }
 
