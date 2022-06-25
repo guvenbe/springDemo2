@@ -1,6 +1,5 @@
 package com.example.springdemo2.customer;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,17 @@ public class CustomerService {
         this.customerRepo = customerRepo;
     }
 
-    List<Customer> getCusomer(){
+    List<Customer> getCustomers(){
         return customerRepo.getcustomers();
+    }
+
+    Customer getCustomer(Long id) {
+        return getCustomers()
+                .stream()
+                .filter(customer -> customer.getId().equals(id))
+                .findFirst()
+                .orElseThrow(()-> new IllegalStateException("customer not found "));
+
     }
 
 }

@@ -3,12 +3,10 @@ package com.example.springdemo2.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v2/customer")
+@RequestMapping(path = "api/v2/customers")
 public class CustomerControlerV2 {
     private final CustomerService customerService;
 
@@ -17,12 +15,15 @@ public class CustomerControlerV2 {
         this.customerService = customerService;
     }
 
+    @GetMapping
+    List<Customer> getCustomers() {
+        return customerService.getCustomers();
+    }
 
-    @GetMapping(value = "all")
-    List<Customer> getCusomer() {
-        return Collections.singletonList(
-                new Customer(0L, "v2", "v2")
-        );
+    @GetMapping(path = "{customerId}")
+    Customer getCustomer(@PathVariable("customerId") Long id) {
+        return customerService.getCustomer(id);
+
     }
 
     @PostMapping
