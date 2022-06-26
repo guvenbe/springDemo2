@@ -1,5 +1,6 @@
 package com.example.springdemo2.customer;
 
+import com.example.springdemo2.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class CustomerService {
                 .stream()
                 .filter(customer -> customer.getId().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new IllegalStateException("customer with id  " + id + "  not found "));
+                .orElseThrow(()-> new NotFoundException("customer with id  " + id + "  not found "));
 
     }
 
