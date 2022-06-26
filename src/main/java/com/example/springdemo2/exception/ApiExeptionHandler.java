@@ -11,7 +11,9 @@ import java.time.ZonedDateTime;
 public class ApiExeptionHandler {
 
     @ExceptionHandler(value = ApiRequestException.class)
-    public ResponseEntity<Object> handleApiRequestException(ApiRequestException e){
+    public ResponseEntity<Object> handleApiRequestException(
+            ApiRequestException e
+    ){
 
         ApiException apiException = new ApiException(
                 e.getMessage(),
@@ -23,5 +25,22 @@ public class ApiExeptionHandler {
         return  new ResponseEntity<>(
                 apiException,
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = NotFoundException.class)
+    public ResponseEntity<Object> handleApiRequestException(
+            NotFoundException e
+    ){
+
+        ApiException apiException = new ApiException(
+                e.getMessage(),
+                e,
+                HttpStatus.NOT_FOUND,
+                ZonedDateTime.now()
+        );
+
+        return  new ResponseEntity<>(
+                apiException,
+                HttpStatus.NOT_FOUND);
     }
 }
