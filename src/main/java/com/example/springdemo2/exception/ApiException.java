@@ -1,6 +1,5 @@
 package com.example.springdemo2.exception;
 
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
