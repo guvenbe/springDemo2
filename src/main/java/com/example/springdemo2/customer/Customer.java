@@ -2,6 +2,7 @@ package com.example.springdemo2.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 
 import javax.persistence.Entity;
@@ -17,6 +18,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode //Don't use
 public class Customer {
 
     @Id
@@ -32,19 +37,6 @@ public class Customer {
     @NotBlank(message = "email must be not empty")
     @Email
     private String email;
-
-    Customer(Long id,
-             String name,
-             String password,
-             String email) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-    }
-
-    public Customer() {
-    }
 
 
     @JsonProperty("customerId")
@@ -65,13 +57,5 @@ public class Customer {
         return email;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+
 }

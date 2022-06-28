@@ -2,6 +2,7 @@ package com.example.springdemo2.customer;
 
 
 import com.example.springdemo2.exception.ApiRequestException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v2/customers")
+@AllArgsConstructor
 public class CustomerControlerV2 {
-    private final CustomerService customerService;
 
-    @Autowired
-    public CustomerControlerV2(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+    private final CustomerService customerService;
 
     @GetMapping
     List<Customer> getCustomers() {
